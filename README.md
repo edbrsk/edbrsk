@@ -9,10 +9,12 @@ Hi there 👋, I'm Edgar!
 </h1>
 <h3>About me</h3>
 
-![](https://hit.yhype.me/github/profile?user_id=79081984&color=blue)
+![](https://komarev.com/ghpvc/?username=edbrsk)
 
 <p>🍿 I'm currently working as a <strong>Software Engineer</strong> at Wallapop</p>
 <p>☀️ Currently living in Barcelona</p>
 <p>ƛ Learning Kotlin/Scala for some years</p>
 <p>📊 Author of D3-Stencil・Check my <a href="https://github.com/edgarordonez" target="blank">personal profile</a></p>
 <p>📫 How to reach me: add me on <a href="https://www.linkedin.com/in/edgarordonezrodriguez/" target="blank">LinkedIn</a> or send me an <a href="mailto:studyberserk@gmail.com">email</a> or some pizza kebab 🍕</p>
+
+![](https://hit.yhype.me/github/profile?user_id=79081984&color=blue)
