@@ -8,7 +8,9 @@ Hi there 👋, I'm Edgar!
   </a>
 </h1>
 <h3>About me</h3>
-![](https://komarev.com/ghpvc/?username=edgarordonez&color=blue)
+
+![](https://hit.yhype.me/github/profile?user_id=79081984&color=blue)
+
 <p>🍿 I'm currently working as a <strong>Software Engineer</strong> at Wallapop</p>
 <p>☀️ Currently living in Barcelona</p>
 <p>ƛ Learning Kotlin/Scala for some years</p>
