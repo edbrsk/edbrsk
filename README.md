@@ -13,7 +13,7 @@ Hi there 👋, I'm Edgar!
 
 <p>🍿 I'm currently working as a <strong>Software Engineer</strong> at Wallapop</p>
 <p>☀️ Currently living in Barcelona</p>
-<p>ƛ Kotlin/Scalas</p>
+<p>ƛ Kotlin/Scala</p>
 <p>📊 Author of D3-Stencil・Check my <a href="https://github.com/edgarordonez" target="blank">personal profile</a></p>
 <p>📫 How to reach me: add me on <a href="https://www.linkedin.com/in/edgarordonezrodriguez/" target="blank">LinkedIn</a> / send me an <a href="mailto:studyberserk@gmail.com">email</a> or buy me some pizza kebab 🍕</p>
 
