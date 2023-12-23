@@ -1,0 +1,17 @@
+[latestPosts]
+    other = 'Últimos posts'
+    
+[readMore]
+    other = 'Leer más'
+
+[summary]
+    other = 'Resumen'
+
+[estimatedReadingTime]
+    other = 'Tiempo de lectura estimado: %d minutos'
+
+[404_title]
+    other = 'Página no encontrada'
+
+[404_text]
+    other = "Parece que has seguido un enlace roto o has introducido una URL que no existe en este sitio."

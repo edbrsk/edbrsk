@@ -102,4 +102,4 @@ Cheers!
 
 ### Links of interest
 
-[[How I passed the eCPPTv2|How I passed the eCPPTv2]]
+[How I passed the eCPPTv2](/posts/talks/how-i-passed-the-ecpptv2/how-i-passed-the-ecpptv2/)

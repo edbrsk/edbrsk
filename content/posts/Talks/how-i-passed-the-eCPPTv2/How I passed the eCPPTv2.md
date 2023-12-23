@@ -95,4 +95,4 @@ Cheers!
 
 ### Links of interest
 
-[[How I passed the eJPT|How I passed the eJPT]]
+[How I passed the eJPT](/posts/talks/how-i-passed-ejpt/how-i-passed-the-ejpt/)
