@@ -16,7 +16,7 @@ En primer lugar, quiero compartir una charla que tenía preparada para los alumn
   
 Aunque el "hacking" que hay de trasfondo en la historia no es tan importante, lo que me encantaría transmitir es ese sentimiento de un conocimiento insaciable, del placer de aprender por aprender sin esperar nada a cambio. **Para mí**, esto *(entre otras)* define, al menos en el inicio de una carrera laboral, a un "buen ingeniero/a de Software".  
 
-También quería jugar un poco con cuestionar la definición del éxito. ¿Por qué iba yo a dar una charla a los alumnos? En años anteriores, se nos presentaba como "alumnos de éxito" o "buenos alumnos", pero ¿qué es el éxito? ¿Se mide por las empresas que figuran en mi CV? ¿Es peor alguien que se queda trabajando en una consultora local de la comarca? ¿Se mide por las cifras anuales de ingresos? *(Dejo estas preguntas en el aire)*.  
+También quería jugar un poco con cuestionar la definición del éxito. ¿Por qué iba yo a dar una charla a los alumnos? En años anteriores, se nos presentaba como "alumnos de éxito" o "buenos alumnos", pero ¿qué es el éxito? ¿Se mide por las empresas que figuran en mi CV? ¿Es peor alguien que se queda trabajando en una consultora local de su provincia? ¿Se mide por las cifras anuales de ingresos? *(Dejo estas preguntas en el aire)*.  
 
 Cualquiera que sea la definición de "éxito" para vosotros, me da igual. Mi idea es transmitir inquietud y que los alumnos, al salir del grado, tengan una visión más amplia de la que les podrían ofrecer sus profesores.  
 
@@ -56,8 +56,8 @@ Pero hagamos un acto de hipocresía y vamos a empezar con la definición del éx
   
 Sí, es posible ganarse bien la vida, fin de la historia.
 
-El salario que mencioné fue durante el "break" en Estados Unidos *(remoto 100%)*, pero actualmente es menor.  
-¿Por qué? He aprendido que en los Estados Unidos *(al menos en mi caso)*, el dinero no siempre se correlaciona con un "buen" nivel técnico.
+El salario que mencioné fue durante el "break" en Estados Unidos, remoto 100%.  
+El sueldo no siempre se correlaciona con un "buen" nivel técnico. Al menos ese fue mi caso en Estados Unidos.
 
 Algunos, si leen esto, podrían pensar que es mejor cobrar mucho y "jugar" con sideprojects... pero personalmente, no me compensa, y créeme que **he reflexionado mucho sobre ello**. Por supuesto, podrás pagar las facturas y ahorrar mucho, pero a mis 28 años, tengo tiempo para hacer otras cosas, equivocarme, volver a empezar, etc.  
 
@@ -66,7 +66,7 @@ Capítulo cerrado. Esa nomina no es gracias al grado superior tampoco... He echa
 ¿A dónde quieres llegar, Edgar?
 Ni idea, pero este es mi post y aquí digo lo que me parece.  
 
-¿Qué hace un buen programador? Eso defínelo tú, yo solo te diré lo que no me parece. **Yo no reparto carnets de ingeniero/programador...**  
+¿Qué hace un buen programador? Eso defínelo tú. **Yo no reparto carnets de ingeniero/programador...**  
 
 Este post será largo, así que si has llegado hasta aquí, gracias!  
   
