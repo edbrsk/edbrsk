@@ -1,0 +1,569 @@
+{
+  "vaultName": "edbrsk - blog",
+  "lastExport": 1739730434731,
+  "pluginVersion": "1.8.01",
+  "validBodyClasses": "publish css-settings-manager theme-dark show-inline-title show-ribbon",
+  "useCustomHeadContent": false,
+  "useCustomFavicon": true,
+  "files": [
+    "Notes/HTB CPTS/HTB CPTS - Notes.md",
+    "Notes/HTB CPTS/Network Enumeration with Nmap.md",
+    "Posts/Certs/How I passed the eCPPTv2.md",
+    "Posts/Posts.md",
+    "WriteUps/2021/Hack The Box BountyHunter - Writeup.md",
+    "WriteUps/2021/TryHackMe Vulnet Internal - Writeup.md",
+    "WriteUps/2022/Hack The Box - Routerspace - Writeup.md",
+    "WriteUps/2022/Hack The Box Retired - Writeup.md",
+    "WriteUps/2022/Hack The Box Timelapse - Writeup.md",
+    "WriteUps/WriteUps.md",
+    "Index.md",
+    "lib/scripts/graph-wasm.wasm",
+    "lib/fonts/94f2f163d4b698242fef.otf",
+    "lib/fonts/72505e6a122c6acd5471.woff2",
+    "lib/fonts/2d5198822ab091ce4305.woff2",
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+    "lib/fonts/cb10ffd7684cd9836a05.woff2",
+    "lib/fonts/b5f0f109bc88052d4000.woff2",
+    "lib/fonts/cbe0ae49c52c920fd563.woff2",
+    "lib/fonts/535a6cf662596b3bd6a6.woff2",
+    "lib/fonts/70cc7ff27245e82ad414.ttf",
+    "lib/fonts/454577c22304619db035.ttf",
+    "lib/fonts/52ac8f3034507f1d9e53.ttf",
+    "lib/fonts/05b618077343fbbd92b7.ttf",
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+    "lib/media/6155340132a851f6089e.svg",
+    "lib/html/file-tree.html",
+    "lib/scripts/webpage.js",
+    "lib/scripts/graph-view.js",
+    "lib/scripts/graph-wasm.js",
+    "lib/scripts/graph-render-worker.js",
+    "lib/scripts/tinycolor.js",
+    "lib/scripts/pixi.js",
+    "lib/scripts/minisearch.js",
+    "lib/media/favicon.ico",
+    "lib/scripts/graph-data.js",
+    "lib/styles/obsidian.css",
+    "lib/styles/global-variable-styles.css",
+    "lib/styles/main-styles.css",
+    "lib/media/ecppt_cert.png",
+    "lib/media/nmap_port_scan.png",
+    "lib/media/data_decoded.png",
+    "lib/media/db.php_xxe_lfi.png",
+    "lib/media/db.php_base64_decode.png",
+    "lib/media/ssh_development_user.png",
+    "lib/media/pwned.png",
+    "lib/media/vulnet_internal.png",
+    "lib/media/nmap_ports.png",
+    "lib/media/nmap_services.png",
+    "lib/media/smbclient_shares.png",
+    "lib/media/nfs.png",
+    "lib/media/redis_pass.png",
+    "lib/media/shell.png",
+    "lib/media/suid_bash.png",
+    "lib/media/run_project.png",
+    "lib/media/root.png",
+    "lib/media/static-page.png",
+    "lib/media/routerspace_apk.png",
+    "lib/media/check_device_access.png",
+    "lib/media/rce.png",
+    "lib/media/id_rsa.png",
+    "lib/media/web-port-80.png",
+    "lib/media/lfi-etc-passwd.png",
+    "lib/media/lfi-etc-passwd-base64.png",
+    "lib/media/beta-page.png",
+    "lib/media/pattern-post.png",
+    "lib/media/make-stack-executable-again.png",
+    "lib/media/webbackup.png",
+    "lib/media/retired-pwned.png",
+    "lib/media/timelapse_pwned.png"
+  ],
+  "mainDependencies": [
+    "lib/scripts/graph-wasm.wasm",
+    "lib/fonts/94f2f163d4b698242fef.otf",
+    "lib/fonts/72505e6a122c6acd5471.woff2",
+    "lib/fonts/2d5198822ab091ce4305.woff2",
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+    "lib/fonts/cb10ffd7684cd9836a05.woff2",
+    "lib/fonts/b5f0f109bc88052d4000.woff2",
+    "lib/fonts/cbe0ae49c52c920fd563.woff2",
+    "lib/fonts/535a6cf662596b3bd6a6.woff2",
+    "lib/fonts/70cc7ff27245e82ad414.ttf",
+    "lib/fonts/454577c22304619db035.ttf",
+    "lib/fonts/52ac8f3034507f1d9e53.ttf",
+    "lib/fonts/05b618077343fbbd92b7.ttf",
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+    "lib/media/6155340132a851f6089e.svg",
+    "lib/html/file-tree.html",
+    "lib/scripts/webpage.js",
+    "lib/scripts/graph-view.js",
+    "lib/scripts/graph-wasm.js",
+    "lib/scripts/graph-render-worker.js",
+    "lib/scripts/tinycolor.js",
+    "lib/scripts/pixi.js",
+    "lib/scripts/minisearch.js",
+    "lib/media/favicon.ico",
+    "lib/scripts/graph-data.js",
+    "lib/styles/obsidian.css",
+    "lib/styles/global-variable-styles.css",
+    "lib/styles/main-styles.css"
+  ],
+  "fileInfo": {
+    "Notes/HTB CPTS/HTB CPTS - Notes.md": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 38,
+      "exportedPath": "notes/htb-cpts/htb-cpts-notes.html",
+      "dependencies": []
+    },
+    "Notes/HTB CPTS/Network Enumeration with Nmap.md": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 96,
+      "exportedPath": "notes/htb-cpts/network-enumeration-with-nmap.html",
+      "dependencies": []
+    },
+    "Posts/Certs/How I passed the eCPPTv2.md": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 5331,
+      "exportedPath": "posts/certs/how-i-passed-the-ecpptv2.html",
+      "dependencies": [
+        "lib/media/ecppt_cert.png"
+      ]
+    },
+    "Posts/Posts.md": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 38,
+      "exportedPath": "posts/posts.html",
+      "dependencies": []
+    },
+    "WriteUps/2021/Hack The Box BountyHunter - Writeup.md": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 4083,
+      "exportedPath": "writeups/2021/hack-the-box-bountyhunter-writeup.html",
+      "dependencies": [
+        "lib/media/nmap_port_scan.png",
+        "lib/media/data_decoded.png",
+        "lib/media/db.php_xxe_lfi.png",
+        "lib/media/db.php_base64_decode.png",
+        "lib/media/ssh_development_user.png",
+        "lib/media/pwned.png"
+      ]
+    },
+    "WriteUps/2021/TryHackMe Vulnet Internal - Writeup.md": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 5344,
+      "exportedPath": "writeups/2021/tryhackme-vulnet-internal-writeup.html",
+      "dependencies": [
+        "lib/media/vulnet_internal.png",
+        "lib/media/nmap_ports.png",
+        "lib/media/nmap_services.png",
+        "lib/media/smbclient_shares.png",
+        "lib/media/nfs.png",
+        "lib/media/redis_pass.png",
+        "lib/media/shell.png",
+        "lib/media/suid_bash.png",
+        "lib/media/run_project.png",
+        "lib/media/root.png"
+      ]
+    },
+    "WriteUps/2022/Hack The Box - Routerspace - Writeup.md": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 18157,
+      "exportedPath": "writeups/2022/hack-the-box-routerspace-writeup.html",
+      "dependencies": [
+        "lib/media/static-page.png",
+        "lib/media/routerspace_apk.png",
+        "lib/media/check_device_access.png",
+        "lib/media/rce.png",
+        "lib/media/id_rsa.png"
+      ]
+    },
+    "WriteUps/2022/Hack The Box Retired - Writeup.md": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 16598,
+      "exportedPath": "writeups/2022/hack-the-box-retired-writeup.html",
+      "dependencies": [
+        "lib/media/web-port-80.png",
+        "lib/media/lfi-etc-passwd.png",
+        "lib/media/lfi-etc-passwd-base64.png",
+        "lib/media/beta-page.png",
+        "lib/media/pattern-post.png",
+        "lib/media/make-stack-executable-again.png",
+        "lib/media/webbackup.png",
+        "lib/media/retired-pwned.png"
+      ]
+    },
+    "WriteUps/2022/Hack The Box Timelapse - Writeup.md": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 18142,
+      "exportedPath": "writeups/2022/hack-the-box-timelapse-writeup.html",
+      "dependencies": [
+        "lib/media/timelapse_pwned.png"
+      ]
+    },
+    "WriteUps/WriteUps.md": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 209,
+      "exportedPath": "writeups/writeups.html",
+      "dependencies": []
+    },
+    "lib/media/ecppt_cert.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 1204642,
+      "exportedPath": "lib/media/ecppt_cert.png",
+      "dependencies": []
+    },
+    "lib/media/nmap_port_scan.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 128073,
+      "exportedPath": "lib/media/nmap_port_scan.png",
+      "dependencies": []
+    },
+    "lib/media/data_decoded.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 51285,
+      "exportedPath": "lib/media/data_decoded.png",
+      "dependencies": []
+    },
+    "lib/media/db.php_xxe_lfi.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 28797,
+      "exportedPath": "lib/media/db.php_xxe_lfi.png",
+      "dependencies": []
+    },
+    "lib/media/db.php_base64_decode.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 65191,
+      "exportedPath": "lib/media/db.php_base64_decode.png",
+      "dependencies": []
+    },
+    "lib/media/ssh_development_user.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 111067,
+      "exportedPath": "lib/media/ssh_development_user.png",
+      "dependencies": []
+    },
+    "lib/media/pwned.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 163247,
+      "exportedPath": "lib/media/pwned.png",
+      "dependencies": []
+    },
+    "lib/media/vulnet_internal.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 173896,
+      "exportedPath": "lib/media/vulnet_internal.png",
+      "dependencies": []
+    },
+    "lib/media/nmap_ports.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 134789,
+      "exportedPath": "lib/media/nmap_ports.png",
+      "dependencies": []
+    },
+    "lib/media/nmap_services.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 156943,
+      "exportedPath": "lib/media/nmap_services.png",
+      "dependencies": []
+    },
+    "lib/media/smbclient_shares.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 26120,
+      "exportedPath": "lib/media/smbclient_shares.png",
+      "dependencies": []
+    },
+    "lib/media/nfs.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 7415,
+      "exportedPath": "lib/media/nfs.png",
+      "dependencies": []
+    },
+    "lib/media/redis_pass.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 108681,
+      "exportedPath": "lib/media/redis_pass.png",
+      "dependencies": []
+    },
+    "lib/media/shell.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 116707,
+      "exportedPath": "lib/media/shell.png",
+      "dependencies": []
+    },
+    "lib/media/suid_bash.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 198385,
+      "exportedPath": "lib/media/suid_bash.png",
+      "dependencies": []
+    },
+    "lib/media/run_project.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 122117,
+      "exportedPath": "lib/media/run_project.png",
+      "dependencies": []
+    },
+    "lib/media/root.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 29386,
+      "exportedPath": "lib/media/root.png",
+      "dependencies": []
+    },
+    "lib/media/static-page.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 966595,
+      "exportedPath": "lib/media/static-page.png",
+      "dependencies": []
+    },
+    "lib/media/routerspace_apk.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 188940,
+      "exportedPath": "lib/media/routerspace_apk.png",
+      "dependencies": []
+    },
+    "lib/media/check_device_access.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 88111,
+      "exportedPath": "lib/media/check_device_access.png",
+      "dependencies": []
+    },
+    "lib/media/rce.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 131707,
+      "exportedPath": "lib/media/rce.png",
+      "dependencies": []
+    },
+    "lib/media/id_rsa.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 135503,
+      "exportedPath": "lib/media/id_rsa.png",
+      "dependencies": []
+    },
+    "lib/media/web-port-80.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 1702666,
+      "exportedPath": "lib/media/web-port-80.png",
+      "dependencies": []
+    },
+    "lib/media/lfi-etc-passwd.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 133462,
+      "exportedPath": "lib/media/lfi-etc-passwd.png",
+      "dependencies": []
+    },
+    "lib/media/lfi-etc-passwd-base64.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 54660,
+      "exportedPath": "lib/media/lfi-etc-passwd-base64.png",
+      "dependencies": []
+    },
+    "lib/media/beta-page.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 1702517,
+      "exportedPath": "lib/media/beta-page.png",
+      "dependencies": []
+    },
+    "lib/media/pattern-post.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 81464,
+      "exportedPath": "lib/media/pattern-post.png",
+      "dependencies": []
+    },
+    "lib/media/make-stack-executable-again.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 212000,
+      "exportedPath": "lib/media/make-stack-executable-again.png",
+      "dependencies": []
+    },
+    "lib/media/webbackup.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 718230,
+      "exportedPath": "lib/media/webbackup.png",
+      "dependencies": []
+    },
+    "lib/media/retired-pwned.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 171994,
+      "exportedPath": "lib/media/retired-pwned.png",
+      "dependencies": []
+    },
+    "lib/media/timelapse_pwned.png": {
+      "modifiedTime": 1739730014034,
+      "sourceSize": 170788,
+      "exportedPath": "lib/media/timelapse_pwned.png",
+      "dependencies": []
+    },
+    "lib/scripts/graph-wasm.wasm": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 23377,
+      "exportedPath": "lib/scripts/graph-wasm.wasm",
+      "dependencies": []
+    },
+    "lib/fonts/94f2f163d4b698242fef.otf": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 66800,
+      "exportedPath": "lib/fonts/94f2f163d4b698242fef.otf",
+      "dependencies": []
+    },
+    "lib/fonts/72505e6a122c6acd5471.woff2": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 104232,
+      "exportedPath": "lib/fonts/72505e6a122c6acd5471.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/2d5198822ab091ce4305.woff2": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 104332,
+      "exportedPath": "lib/fonts/2d5198822ab091ce4305.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 98868,
+      "exportedPath": "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/cb10ffd7684cd9836a05.woff2": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 106876,
+      "exportedPath": "lib/fonts/cb10ffd7684cd9836a05.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/b5f0f109bc88052d4000.woff2": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 105804,
+      "exportedPath": "lib/fonts/b5f0f109bc88052d4000.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/cbe0ae49c52c920fd563.woff2": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 106108,
+      "exportedPath": "lib/fonts/cbe0ae49c52c920fd563.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/535a6cf662596b3bd6a6.woff2": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 111708,
+      "exportedPath": "lib/fonts/535a6cf662596b3bd6a6.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/70cc7ff27245e82ad414.ttf": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 192740,
+      "exportedPath": "lib/fonts/70cc7ff27245e82ad414.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/454577c22304619db035.ttf": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 161376,
+      "exportedPath": "lib/fonts/454577c22304619db035.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/52ac8f3034507f1d9e53.ttf": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 191568,
+      "exportedPath": "lib/fonts/52ac8f3034507f1d9e53.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/05b618077343fbbd92b7.ttf": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 155288,
+      "exportedPath": "lib/fonts/05b618077343fbbd92b7.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 7876,
+      "exportedPath": "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+      "dependencies": []
+    },
+    "lib/media/6155340132a851f6089e.svg": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 315,
+      "exportedPath": "lib/media/6155340132a851f6089e.svg",
+      "dependencies": []
+    },
+    "lib/html/file-tree.html": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 11515,
+      "exportedPath": "lib/html/file-tree.html",
+      "dependencies": []
+    },
+    "lib/scripts/webpage.js": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 47290,
+      "exportedPath": "lib/scripts/webpage.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-view.js": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 15519,
+      "exportedPath": "lib/scripts/graph-view.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-wasm.js": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 14021,
+      "exportedPath": "lib/scripts/graph-wasm.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-render-worker.js": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 5179,
+      "exportedPath": "lib/scripts/graph-render-worker.js",
+      "dependencies": []
+    },
+    "lib/scripts/tinycolor.js": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 29832,
+      "exportedPath": "lib/scripts/tinycolor.js",
+      "dependencies": []
+    },
+    "lib/scripts/pixi.js": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 449509,
+      "exportedPath": "lib/scripts/pixi.js",
+      "dependencies": []
+    },
+    "lib/scripts/minisearch.js": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 29422,
+      "exportedPath": "lib/scripts/minisearch.js",
+      "dependencies": []
+    },
+    "lib/media/favicon.ico": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 15406,
+      "exportedPath": "lib/media/favicon.ico",
+      "dependencies": []
+    },
+    "lib/scripts/graph-data.js": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 1203,
+      "exportedPath": "lib/scripts/graph-data.js",
+      "dependencies": []
+    },
+    "lib/styles/obsidian.css": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 137329,
+      "exportedPath": "lib/styles/obsidian.css",
+      "dependencies": []
+    },
+    "lib/styles/global-variable-styles.css": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 262,
+      "exportedPath": "lib/styles/global-variable-styles.css",
+      "dependencies": []
+    },
+    "lib/styles/main-styles.css": {
+      "modifiedTime": 1739730434731,
+      "sourceSize": 23130,
+      "exportedPath": "lib/styles/main-styles.css",
+      "dependencies": []
+    },
+    "Index.md": {
+      "modifiedTime": 1739730241350,
+      "sourceSize": 220,
+      "exportedPath": "index.html",
+      "dependencies": []
+    }
+  }
+}
