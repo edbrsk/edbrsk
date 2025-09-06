@@ -1,0 +1,24 @@
+languageCode = "en-US"
+languageName = "English"
+languageDirection = "ltr"
+weight = 1
+
+title = "Edgar"
+copyright = "&copy; 2025"
+
+[params]
+  dateFormat = "2 January 2006"
+
+  mainSections = ["samples"]
+  description = "Personal portfolio and blog of a software engineer and data science student"
+
+[params.author]
+  name = "Edgar"
+  image = "img/author.jpg"
+  # headline = "Not your ordinary theme!"
+  # bio = "This is an example author bio, and although there's a stock photo of a dog here, this article was actually created by a human. :dog:"
+  links = [
+    { youtube = "https://youtube.com/@withedgar" },
+    { instagram = "https://instagram.com/withedgar.me" },
+    { github = "https://github.com/edbrsk" }
+  ]

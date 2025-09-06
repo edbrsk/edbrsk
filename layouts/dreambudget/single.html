@@ -1,0 +1,280 @@
+{{ define "main" }}
+
+<style>
+.dreambudget-container {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    min-height: 80vh;
+}
+.dreambudget-hero {
+    background-color: #93C1E4;
+}
+.dreambudget-budgets {
+    background-color: #AFD0CE;
+}
+.dreambudget-transactions {
+    background-color: #FCFDF6;
+}
+.dreambudget-accounts {
+    background-color: #BED6A6;
+}
+.dreambudget-payees {
+    background-color: #D4E195
+}
+.dreambudget-reports {
+    background-color: #F4F7DD
+}
+.dreambudget-dark {
+    background-color: #000000;
+}
+</style>
+
+<section class="dreambudget-container dreambudget-hero">
+    <!-- Main container -->
+    <div class="flex flex-col lg:flex-row min-h-[80vh]">
+        <!-- Left content section -->
+        <div class="flex-1 flex items-center justify-center p-6 lg:p-8 text-white">
+            <div class="max-w-md w-full">
+                <!-- App Logo -->
+                <div class="mb-8">
+                    {{ $logo := resources.Get "img/dreambudget.png" }}
+                    <img src="{{ $logo.Permalink }}" alt="DreamBudget Logo" class="w-20 h-20 rounded-3xl shadow-lg">
+                </div>
+
+                <!-- Headline -->
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                    Finally, a clear view of your money.
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="text-lg md:text-xl mb-8">
+                    Dreambudget is the simple, powerful app that brings all your accounts, budgets, and spending into one place. Take control of your finances and build your future with confidence.
+                </p>
+
+                <!-- Download Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <!-- App Store Button -->
+                    <div class="relative inline-block">
+                        <a href="#" class="inline-block opacity-60 cursor-not-allowed" onclick="return false;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/1280px-Download_on_the_App_Store_Badge.svg.png" alt="Download on the App Store - Coming Soon" class="h-12 w-auto grayscale">
+                        </a>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xs font-bold text-white bg-black/70 px-2 py-1 rounded">Soon</span>
+                        </div>
+                    </div>
+
+                    <!-- Google Play Button -->
+                    <div class="relative inline-block">
+                        <a href="#" class="inline-block opacity-60 cursor-not-allowed" onclick="return false;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1024px-Google_Play_Store_badge_EN.svg.png" alt="GET IT ON Google Play - Coming Soon" class="h-12 w-auto grayscale">
+                        </a>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="text-xs font-bold text-white bg-black/70 px-2 py-1 rounded">Soon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right content section (App Screenshot) -->
+        <div class="flex-1 flex items-end justify-center p-6 lg:p-8" style="padding: 2rem 0 0 0">
+            <div class="max-w-md w-full">
+                {{ $image := resources.Get "img/dreambudget_budgets_up.png" }}
+                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot" class="max-w-sm w-full h-auto rounded-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dreambudget-container dreambudget-budgets">
+    <!-- Main container -->
+    <div class="flex flex-col lg:flex-row min-h-[80vh]">
+        <!-- Left content section (App Screenshot) -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8" style="padding: 0">
+            <div class="max-w-md w-full">
+                {{ $image := resources.Get "img/dreambudget_budgets_bottom.png" }}
+                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot" class="max-w-sm w-full h-auto rounded-lg">
+            </div>    
+        </div>
+
+        <!-- Rigth content section -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8 text-white">
+            <div class="max-w-md w-full">
+                <!-- Headline -->
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                    Master Your Money with Smart Budgets
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="text-lg md:text-xl mb-8">
+                    Stop wondering where your money went. Create simple, flexible budgets to track your spending, eliminate overspending, and finally achieve your financial goals.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dreambudget-container dreambudget-transactions">
+    <!-- Main container -->
+    <div class="flex flex-col lg:flex-row min-h-[80vh]">
+        <!-- Left content section -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8 ">
+            <div class="max-w-md w-full">
+
+                <!-- Headline -->
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                    Log Transactions in Seconds
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="text-lg md:text-xl mb-8">
+                    A budget is only as good as the data you feed it. Quickly log every expense to keep your budgets perfectly in sync and make confident spending decisions.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right content section (App Screenshot) -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
+            <div class="max-w-md w-full">
+                {{ $image := resources.Get "img/dreambudget_add_transaction.png" }}
+                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot" class="max-w-sm w-full h-auto rounded-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dreambudget-container dreambudget-accounts">
+    <!-- Main container -->
+    <div class="flex flex-col lg:flex-row min-h-[80vh]">
+        <!-- Left content section (App Screenshot) -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
+            <div class="max-w-md w-full">
+                {{ $image := resources.Get "img/dreambudget_accounts.png" }}
+                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot" class="max-w-sm w-full h-auto rounded-lg">
+            </div>    
+        </div>
+
+        <!-- Rigth content section -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8 text-white">
+            <div class="max-w-md w-full">
+                <!-- Headline -->
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                    All Your Accounts, One View
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="text-lg md:text-xl mb-8">
+                    Stop juggling multiple apps. Securely connect your bank accounts to get a complete, real-time overview of your finances in one single place. Syncing transactions is just a click away.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dreambudget-container dreambudget-payees">
+    <!-- Main container -->
+    <div class="flex flex-col lg:flex-row min-h-[80vh]">
+        <!-- Left content section -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8 text-white">
+            <div class="max-w-md w-full">
+
+                <!-- Headline -->
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                    Track Your Payees
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="text-lg md:text-xl mb-8">
+                    Who gets the biggest slice of your pie? Manage a list of your payees—from your favorite coffee shop to your monthly subscriptions—and see exactly where your money flows.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right content section (App Screenshot) -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
+            <div class="max-w-md w-full">
+                {{ $image := resources.Get "img/dreambudget_payees.png" }}
+                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot" class="max-w-sm w-full h-auto rounded-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dreambudget-container dreambudget-reports">
+    <!-- Main container -->
+    <div class="flex flex-col lg:flex-row min-h-[80vh]">
+        <!-- Left content section (App Screenshot) -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
+            <div class="max-w-md w-full">
+                {{ $image := resources.Get "img/dreambudget_reports.png" }}
+                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot" class="max-w-sm w-full h-auto rounded-lg">
+            </div>    
+        </div>
+
+        <!-- Rigth content section -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
+            <div class="max-w-md w-full">
+                <!-- Headline -->
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                    Insightful Reports, Clear Vision
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="text-lg md:text-xl mb-8">
+                    Transform your financial data into a clear story. Our beautiful charts and reports help you visualize spending patterns and gain the clarity you need to save more effectively.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dreambudget-container dreambudget-dark">
+    <!-- Main container -->
+    <div class="flex flex-col lg:flex-row min-h-[80vh]">
+        <!-- Left content section -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8 text-white">
+            <div class="max-w-md w-full">
+
+                <!-- Headline -->
+                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                    Designed For You
+                </h1>
+
+                <!-- Sub-headline -->
+                <p class="text-lg md:text-xl mb-8">
+                    Your experience matters. Switch to a beautiful Dark Mode to reduce eye strain, and use dreambudget in your preferred language.
+                </p>
+            </div>
+        </div>
+
+        <!-- Right content section (App Screenshot) -->
+        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
+            <div class="max-w-md w-full">
+                {{ $image := resources.Get "img/dreambudget_budgets_dark.png" }}
+                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot" class="max-w-sm w-full h-auto rounded-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__logo">
+            <span class="logo">Edgar</span>
+        </div>
+        <div class="footer__contact">
+            <p class="contact__text">
+                Follow me on <a href="https://www.instagram.com/withedgar.me/" class="contact__link">Instagram</a>
+            </p>
+            <p class="contact__text">
+                Business email
+            </p>
+            <a href="mailto:edbrsk@gmail.com" class="contact__email">
+                edbrsk@gmail.com
+            </a>
+        </div>
+    </div>
+</footer>
+
+{{ end }}
