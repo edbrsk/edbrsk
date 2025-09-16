@@ -22,7 +22,7 @@ I'm a **Software Engineer** and **Data Science student**. Sharing my journey, on
       <p>My personal blog where I document my journey and explore diverse topics, from software development and data science to cybersecurity, music production, and filmmaking.</p>
     </td>
     <td width="50%">
-      <h3><a href="https://example.com/dreambudget">💸 Dreambudget</a></h3>
+      <h3><a href="https://withedgar.me/dreambudget">💸 Dreambudget</a></h3>
       <p>A minimalist and fast personal finance app designed to help you track your budget effortlessly. Built with a focus on simplicity and user experience.</p>
     </td>
   </tr>
