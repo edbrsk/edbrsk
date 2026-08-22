@@ -1,0 +1,36 @@
+{
+  "name": "modern-landing-page",
+  "version": "1.0.0",
+  "description": "A clean, responsive landing page built with modern web technologies",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000",
+    "build": "echo 'No build process needed for static files'",
+    "lint:css": "echo 'Add CSS linting tool here'",
+    "lint:js": "echo 'Add JS linting tool here'",
+    "format": "echo 'Add formatting tool here'"
+  },
+  "keywords": [
+    "landing-page",
+    "responsive",
+    "modern",
+    "css-grid",
+    "flexbox",
+    "hugo-ready",
+    "accessibility"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

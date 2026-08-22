@@ -1,0 +1,498 @@
+{{ define "main" }}
+
+<style>
+    .netpause-container {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+    }
+
+    .netpause-hero {
+        background-color: #0F172A;
+    }
+
+    .netpause-article {
+        background-color: #FFFFFF;
+    }
+
+    .netpause-article,
+    .netpause-article * {
+        color: #1E293B;
+    }
+
+    .netpause-article h2,
+    .netpause-article h3 {
+        color: #0F172A;
+    }
+
+    .netpause-article a {
+        color: #2563EB;
+    }
+
+    .netpause-prose {
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: 4rem 1.5rem;
+        line-height: 1.75;
+        font-size: 1.05rem;
+    }
+
+    .netpause-prose h2 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .netpause-prose h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-top: 2.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .netpause-prose p,
+    .netpause-prose ul {
+        margin-bottom: 1.25rem;
+    }
+
+    .netpause-prose code {
+        background-color: #F1F5F9;
+        color: #0F172A;
+        padding: 0.15em 0.4em;
+        border-radius: 0.3em;
+        font-size: 0.9em;
+    }
+
+    .netpause-lede {
+        font-style: italic;
+        color: #475569 !important;
+        border-left: 3px solid #CBD5E1;
+        padding-left: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .netpause-code-block {
+        background-color: #0F172A;
+        color: #E2E8F0;
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+
+    .netpause-code-block code {
+        background-color: transparent !important;
+        color: #E2E8F0 !important;
+        padding: 0 !important;
+        font-size: inherit;
+    }
+</style>
+
+<section class="netpause-container netpause-hero">
+    <div class="flex flex-col items-center justify-center text-center min-h-[50vh] p-6 lg:p-8 text-white">
+        <div class="max-w-2xl w-full">
+            {{ $logo := resources.Get "img/netpause.png" }}
+            <img src="{{ $logo.Permalink }}" alt="Netpause logo" class="mx-auto mb-6 h-32 w-auto md:h-40">
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
+                Netpause under the hood
+            </h1>
+            <p class="text-lg md:text-xl mb-2">
+                A pocket-sized Burp Suite living inside a Flutter app.
+            </p>
+            <p class="text-base md:text-lg opacity-80">
+                Intercept, inspect, and modify HTTP/S traffic on mobile devices — from inside the app itself.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="netpause-container netpause-article">
+    <article class="netpause-prose">
+
+        <p class="netpause-lede">
+            A companion to the project's <a target="_blank"
+                href="https://github.com/edbrsk/netpause/blob/main/README.md"><code>README.md</code></a> — the "let me
+            explain this over coffee"
+            version. The README is the reference; this is the mental model to have
+            in your head before you open <code>lib/proxy_server.dart</code> or
+            <code>lib/reverse_proxy_server.dart</code> for the first time.
+        </p>
+
+        <p>
+            If you've ever pointed a browser at Burp Suite or mitmproxy, you
+            already understand netpause conceptually. Put a proxy between a
+            client and a server, let it read (or rewrite) the traffic in between.
+            Netpause does exactly that, with one twist: the "client" and the
+            "proxy" are the same app, running in the same process, on the same
+            device. It's not intercepting your system's traffic — it's intercepting
+            its <em>own</em> WebView's traffic, for one configured domain, driven by a
+            YAML file of rewrite rules instead of a UI you click through by hand.
+        </p>
+
+        <p>
+            That's the whole idea. The interesting part — the part worth an actual
+            write-up — is that "put a proxy in front of a WebView" means something
+            completely different on Android than it does on iOS. Different enough
+            that this project has two independent implementations of the same
+            concept, in two different files, and neither is a thin platform-flag
+            wrapper around the other. This is the story of both, told through the
+            actual code.
+        </p>
+
+        <h2>Android: the version that works the way you'd expect</h2>
+
+        <p>
+            Android's WebView has a real, honest proxy override —
+            <code>ProxyController.setProxyOverride</code>. Tell it "route everything through
+            <code>127.0.0.1:8899</code>," and it means it, including the HTTP <code>CONNECT</code>
+            handshake a browser uses to tunnel HTTPS through a proxy. <code>ProxyServer</code>
+            (<code>lib/proxy_server.dart</code>) is what's listening on the other end, and its
+            very first decision, for every connection, is whether to actually look
+            inside the traffic or just get out of the way:
+        </p>
+
+        <pre class="netpause-code-block"><code>if (line.method == 'CONNECT') {
+  final connectHost = parts.first;
+  // ...
+  if (!profile.shouldMitm(connectHost)) {
+    // Not our configured domain — pump bytes verbatim, both directions.
+    // The proxy never decrypts this traffic at all.
+    await _rawTunnel(socket, reader, connectHost, connectPort);
+    return;
+  }
+
+  // Our domain — terminate TLS ourselves, using a cert we generated,
+  // and start reading *new*, now-plaintext requests off this socket.
+  active = await SecureSocket.secureServer(active, _tlsContext!, ...);
+}</code></pre>
+
+        <p>
+            Two branches, and that second one is the entire trick behind every
+            "MITM proxy" — Burp Suite included. Terminate the TLS handshake with a
+            certificate you control, and the traffic isn't encrypted from your
+            point of view anymore. Burp does this by asking you to install its
+            root CA everywhere. Netpause does the narrow version: it tells the
+            WebView, via <code>onReceivedServerTrustAuthRequest</code>, to trust one
+            self-signed cert, for one domain, and nothing else — no device-wide CA,
+            no effect on any other app or any other host this one talks to.
+        </p>
+
+        <p>
+            The detail that makes Android's whole story simple is that <strong>the
+                WebView never finds out.</strong> Its address bar, its cookies, every
+            absolute URL a page writes to itself — all of it still says the real
+            domain the entire time, because from the WebView's point of view, it
+            genuinely is talking to the real domain. The proxy is invisible in the
+            most literal sense. Everything downstream of the <code>CONNECT</code> decision is
+            just: read the request, check it against the configured rules, forward
+            it (rewritten or not), write the response back.
+        </p>
+
+        <h2>iOS: no <code>CONNECT</code>, no override, two dead ends first</h2>
+
+        <p>
+            iOS's WebView has nothing equivalent to <code>setProxyOverride</code> with real
+            teeth. This project tried two other doors before finding the one that
+            opens, and both dead ends are worth knowing, because they explain a
+            constraint the working mechanism has to live with.
+        </p>
+
+        <p>
+            <strong>First attempt — <code>WKWebsiteDataStore.proxyConfigurations</code></strong> (iOS
+            17+). On paper this is precisely the right API: a WebView-scoped proxy
+            override, the same shape as Android's. In practice, its <code>CONNECT</code>
+            handshake happens inside CFNetwork's own internal proxy machinery, at
+            a layer that never routes a "do you trust this certificate?" challenge
+            to any navigation delegate. There's no hook to catch. Confirmed on a
+            real device — the API looked exactly right and simply never called
+            back.
+        </p>
+
+        <p>
+            <strong>Second attempt — a Network Extension "App Proxy" provider</strong>
+            (<code>NEAppProxyProvider</code>), which intercepts network flows <em>underneath</em>
+            the WebView entirely — closer to how a VPN client works than to a
+            browser proxy. This one got fully implemented: a real Swift
+            <code>NEAppProxyProvider</code> subclass, its own Xcode extension target, code
+            reviewed and ready. It failed on-device with a system log line that
+            has nothing to do with the code itself:
+        </p>
+
+        <pre class="netpause-code-block"><code>MDM must be used to create NEAppProxyProvider configurations</code></pre>
+
+        <p>
+            Some Network Extension provider types are gated behind enterprise
+            device management. Not a missing entitlement, not a bug — a hard OS
+            policy wall with no self-service path for a personal developer build.
+        </p>
+
+        <p>
+            <strong>Third attempt — the one that ships.</strong> If the WebView can't be
+            convinced to transparently tunnel through a proxy, stop asking it to,
+            and change what it's actually looking at. <code>ReverseProxyServer</code>
+            (<code>lib/reverse_proxy_server.dart</code>) is a completely ordinary
+            <code>HttpServer.bindSecure</code> on <code>127.0.0.1</code>, presenting the same kind of
+            self-signed cert Android uses. The WebView is simply told to navigate
+            to <code>https://127.0.0.1:&lt;port&gt;/</code> as its actual starting URL — a plain,
+            first-party, unmediated navigation, which is the single most
+            boring, best-supported self-signed-cert scenario iOS has. The trust
+            challenge fires exactly the way you'd want, because from iOS's
+            perspective nothing exotic is happening: you're just visiting a site
+            with a certificate it doesn't fully trust yet.
+        </p>
+
+        <p>
+            That one design choice — the WebView's real, literal top-level origin
+            is now <code>127.0.0.1</code>, not the real domain — is the fact that explains
+            almost every other line of iOS-specific code in this project.
+        </p>
+
+        <h3>One dedicated local port per real host</h3>
+
+        <p>
+            A real site rarely lives entirely on one hostname — a secondary flow
+            on one subdomain, a widget served from another, sometimes an
+            entirely separate third-party domain the flow legitimately crosses to
+            and back. <code>ReverseProxyServer</code> gives each real host its own dedicated
+            local port, bound the moment that host is first referenced:
+        </p>
+
+        <pre class="netpause-code-block"><code>Future&lt;_Backend&gt; _ensureBackendFor(String host, {int? portHint}) {
+  return _backendsByHost.putIfAbsent(host, () async {
+    final server = await _bindServer(0);       // ephemeral port
+    final backend = _Backend(
+      scheme: profile.backendScheme,
+      host: host,
+      port: portHint ?? profile.backendPort,
+      localPort: server.port,
+    );
+    _listen(server, backend);
+    return backend;
+  });
+}</code></pre>
+
+        <p>
+            Binding a <em>whole new port</em> per host, instead of sharing one port and
+            tracking "which real host is this request actually for" some other
+            way, is what makes routing trivial: the port a request arrived on
+            answers that question directly. No session state, no path-prefix
+            parsing, no lookup table that could ever drift out of sync with
+            reality. <code>Map.putIfAbsent</code> here is also quietly doing something
+            important — its check-and-insert is synchronous, so two requests
+            discovering the same new host at the same instant can never race each
+            other into binding two ports for it.
+        </p>
+
+        <h2>The problem this design creates, and the two fixes it needs</h2>
+
+        <p>
+            Once the browser's real origin is <code>127.0.0.1</code>, every reference a page
+            makes to <em>any other</em> host — its own alternate hostnames, or a
+            genuinely external domain — points somewhere the proxy no longer
+            controls. Click that link, and the browser leaves the proxy's control
+            for the rest of the session, silently. This has to be fixed in two
+            separate directions, because it's really two separate problems wearing
+            the same coat.
+        </p>
+
+        <p>
+            <strong>Direction one: what comes back.</strong> A response body full of
+            <code>&lt;a href="https://real-host/..."&gt;</code>-style links has to be rewritten before
+            it reaches the browser. <code>response_rewriter.dart</code> does this as a small,
+            dependency-free regex pass:
+        </p>
+
+        <pre class="netpause-code-block"><code>final _absoluteUrlPattern = RegExp(
+  r'(https?:)?//([a-zA-Z0-9.-]+)(?::(\d+))?' + r'''(?=[/?#"'\s]|$)''',
+);
+
+String rewriteHostReferences(String text, Map&lt;String, int&gt; hostToLocalPort) {
+  return text.replaceAllMapped(_absoluteUrlPattern, (match) {
+    final host = match.group(2)!;
+    final localPort = hostToLocalPort[host];
+    if (localPort == null) return match.group(0)!;   // not ours — leave it
+    final schemePrefix = match.group(1);
+    return schemePrefix == null
+        ? '//127.0.0.1:$localPort'
+        : 'https://127.0.0.1:$localPort';
+  });
+}</code></pre>
+
+        <p>
+            Same idea applies to a <code>Set-Cookie</code>'s <code>Domain=</code> attribute (a cookie
+            whose domain doesn't match the serving host gets rejected by the
+            browser anyway, so stripping it just lets the cookie fall back to
+            "whichever host actually served me" — now correctly <code>127.0.0.1</code>), and
+            to a <code>Content-Security-Policy</code> written for a world where the origin
+            matches the real domain, which would otherwise block the very page
+            it's meant to protect.
+        </p>
+
+        <p>
+            Worth calling out: this rewrite pass runs on <em>any</em> text-ish response,
+            not just HTML. A JSON API response is exactly as capable of embedding
+            a URL that a page's own JavaScript later reads and navigates to as an
+            HTML page is — missing that meant some navigations escaped the proxy
+            with no HTML link ever involved at all.
+        </p>
+
+        <p>
+            <strong>Direction two: what goes out.</strong> This is the one that's easy to miss
+            entirely. Every outgoing request still carries a <code>Referer</code> and
+            <code>Origin</code> saying <code>https://127.0.0.1:8899</code> — which is, truthfully,
+            exactly what page the WebView believes it's coming from. Most backend
+            endpoints don't inspect those headers and never notice. Some do —
+            validating <code>Referer</code>/<code>Origin</code> is a common, lightweight anti-forgery
+            check — and a mismatch there can make an endpoint quietly fall back to
+            some default behavior instead of erroring outright, which from the
+            outside looks identical to a cookie or session bug. <code>_rewriteOutgoingOrigin</code>
+            is the mirror image of the response-side rewrite, run in the opposite
+            direction:
+        </p>
+
+        <pre class="netpause-code-block"><code>String? _rewriteOutgoingOrigin(String value) {
+  final uri = Uri.tryParse(value);
+  if (uri == null || uri.host != '127.0.0.1') return null;
+  final realBackend = _backendsByLocalPort[uri.port];
+  if (realBackend == null) return null;
+  return uri
+      .replace(scheme: realBackend.scheme, host: realBackend.host, port: realBackend.port)
+      .toString();
+}</code></pre>
+
+        <p>
+            Same underlying map (<code>_backendsByLocalPort</code>), just walked backwards:
+            "this local port belongs to which real host" instead of "this real
+            host belongs to which local port." Two directions, one root cause.
+        </p>
+
+        <h2>A small, genuinely interesting Dart gotcha</h2>
+
+        <p>
+            While chasing exactly this class of bug, one specific case turned out
+            to have nothing to do with headers, cookies, or rewriting at all — a
+            plain parsing quirk that's worth knowing about if you ever build
+            anything on top of <code>dart:io</code>'s <code>HttpServer</code>.
+        </p>
+
+        <p>
+            Some pages, for entirely mundane reasons — a template that
+            concatenates a base URL already ending in <code>/</code> with a path that also
+            starts with <code>/</code>, or a protocol-relative link built by string
+            concatenation that forgets to trim a redundant slash — end up with an
+            absolute URL containing a doubled slash <em>right after the domain</em>, like
+            <code>https://some-host//actual/path</code>. A real browser doesn't care; it
+            treats that as a harmless quirk and requests <code>//actual/path</code> as the
+            path, same as always.
+        </p>
+
+        <p>
+            Dart's <code>Uri</code> class, however, follows the URL specification literally,
+            and the spec says a path that <em>starts</em> with <code>//</code> is syntactically a
+            "network-path reference" — the same shape you'd use to write
+            <code>//example.com/page</code> to mean "same scheme, different host." Try it:
+        </p>
+
+        <pre class="netpause-code-block"><code>void main() {
+  final u = Uri.parse('//actual/path');
+  print(u.authority); // "actual"  &lt;- read as a HOST, not a path segment
+  print(u.path);      // "/path"  &lt;- "actual" is silently gone
+}</code></pre>
+
+        <p>
+            Feed a raw HTTP request line with that doubled slash into
+            <code>dart:io</code>'s <code>HttpServer</code>, and <code>request.uri.path</code> alone quietly loses
+            the first real path segment the exact same way — because <code>HttpServer</code>
+            builds <code>request.uri</code> with the same <code>Uri</code> parser. Route on
+            <code>request.uri.path</code>
+            without accounting for this, and a request meant for <code>/actual/path</code> is
+            silently forwarded as <code>/path</code> instead. If the real backend has any
+            kind of "unrecognized path → serve something generic" fallback
+            (plenty do), you get a perfectly normal <code>200 OK</code> full of completely
+            unrelated content, and nothing in any log that says why.
+        </p>
+
+        <p>
+            The fix is small once you know to look for it: <code>request.uri.authority</code>
+            is empty for every ordinary request — this ambiguity is the <em>only</em>
+            time it isn't — so reconstructing the literal path whenever it's
+            non-empty recovers exactly what was actually sent:
+        </p>
+
+        <pre class="netpause-code-block"><code>final rawPath = request.uri.authority.isEmpty
+    ? request.uri.path
+    : '//${request.uri.authority}${request.uri.path}';</code></pre>
+
+        <p>
+            The general lesson is the one worth keeping past this specific case: a
+            mechanism that reparses raw HTTP through a general-purpose URI library
+            can silently disagree with what a browser considers "the same
+            request," in exactly the spots where a browser's own leniency papers
+            over something the spec is stricter about. If a proxied request is
+            producing suspiciously <em>unrelated</em> content instead of an outright
+            error, check the literal path it actually forwarded before reaching
+            for a more exotic theory.
+        </p>
+
+        <h2>The debugging habit that actually pays off here</h2>
+
+        <p>
+            Everything in the two sections above was found the same way: not by
+            theorizing, but by capturing a request known to work — from a real
+            browser's own network inspector, or just <code>curl -v</code> against the real
+            backend directly — and diffing it, field by field, against what the
+            proxy actually sent. Headers, cookies, body, and (as it turned out)
+            the literal request path. It's a slower first step than guessing, and
+            it's the one that actually finds the answer, because "everything looks
+            correct" is exactly the situation where the bug is hiding in the one
+            field nobody thought to check.
+        </p>
+
+        <h2>Where to go from here</h2>
+
+        <p>
+            <code>lib/profile.dart</code> and <code>lib/rule_engine.dart</code> are the genuinely shared,
+            platform-agnostic half of this app — pure <code>dart:io</code>, no networking, no
+            platform checks, trivially unit-testable. Read those first; both
+            proxies build their rule dispatch on top of exactly the same functions.
+            <code>lib/proxy_server.dart</code> and <code>lib/reverse_proxy_server.dart</code> are where
+            each platform's actual story lives, and — deliberately — nothing keeps
+            their rule-handling branches in sync automatically. If you add a new
+            rule shape, you're adding it in both files, by hand, on purpose.
+        </p>
+
+        <p>
+            For the exact class names, function signatures, and the test files
+            that pin every one of the behaviors above down so nobody has to
+            rediscover them the hard way twice, the project's <a target="_blank"
+                href="https://github.com/edbrsk/netpause/blob/main/README.md"><code>README.md</code></a> is the
+            real reference. Consider this page the version you'd want in your head
+            <em>before</em> you open it.
+        </p>
+
+    </article>
+</section>
+
+<footer class="footer">
+    <div class="footer__content">
+        <div class="footer__logo">
+            <span class="logo">Edgar</span>
+        </div>
+        <div class="footer__contact">
+            <p class="contact__text">
+                Follow me on <a href="https://www.instagram.com/edbrsk/" class="contact__link">Instagram</a>
+            </p>
+            <p class="contact__text">
+                Business email
+            </p>
+            <a href="mailto:edbrsk@gmail.com" class="contact__email">
+                edbrsk@gmail.com
+            </a>
+        </div>
+    </div>
+</footer>
+
+{{ end }}

@@ -1,0 +1,12 @@
+# -- Security --
+# lighthouse.html (in content/docs/version-2/) is a self-contained,
+# author-written demo report embedded as a raw HTML content page —
+# Hugo's default security policy blocks rendering any text/html content
+# page unless explicitly allowed. Hugo's own default is
+# allowContent = ['! ^text/html$'] (allow everything except text/html);
+# overriding this key replaces the whole list rather than adding to it,
+# so this has to explicitly allow everything, not just text/html, or
+# ordinary markdown content pages break instead.
+
+[security]
+  allowContent = ['.*']
