@@ -1,7 +1,7 @@
 // Spanish for the Dreambudget pages, applied in the browser so the rest of the
 // site needs no i18n. English stays in the HTML; elements opt in with
 // data-i18n="key" (inner HTML) or data-i18n-attr="attr:key;attr:key". Long text, like the
-// privacy and support pages, is in the HTML in both languages, each block marked
+// privacy, terms and support pages, is in the HTML in both languages, each block marked
 // data-db-lang-only.
 // Loaded at the top of <body>, before the content it translates.
 (function () {
@@ -13,6 +13,8 @@
         'meta.privacy.description': 'Qué recoge Dreambudget, dónde se guarda, quién puede verlo y cómo eliminarlo.',
         'meta.support.title': 'Ayuda de Dreambudget',
         'meta.support.description': 'Consigue ayuda con Dreambudget, o pide que se eliminen tu cuenta y tus datos.',
+        'meta.terms.title': 'Condiciones de uso de Dreambudget',
+        'meta.terms.description': 'Las condiciones para usar Dreambudget, incluido cómo se introducirían funciones de pago.',
         'meta.how.description': '¿Nunca has hecho un presupuesto? Una guía paso a paso para planificar tu mes con Dreambudget, desde añadir tus cuentas hasta revisar adónde fue tu dinero.',
 
         'common.comingSoon': 'Próximamente',
@@ -32,10 +34,13 @@
         'footer.email': 'Email profesional',
         'footer.privacy': 'Política de privacidad',
         'footer.support': 'Ayuda',
+        'footer.terms': 'Condiciones de uso',
 
         'privacy.mark': 'Privacidad',
         'privacy.title': 'Tu dinero, <span class="db-grad">tus datos.</span>',
         'support.mark': 'Ayuda',
+        'terms.mark': 'Condiciones',
+        'terms.title': 'Condiciones claras, <span class="db-grad">sin letra pequeña.</span>',
         'support.title': '¿Necesitas ayuda? <span class="db-grad">Escríbeme.</span>',
 
         'landing.hero.title': 'Por fin, una visión clara <span class="db-grad">de tu dinero.</span>',
