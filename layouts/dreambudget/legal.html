@@ -1,0 +1,32 @@
+{{ define "main" }}
+{{- /* Text pages (privacy, support). Front matter gives pageKey, which prefixes the i18n keys, plus the English hero. */ -}}
+{{- $key := .Params.pageKey -}}
+{{- $es := .Resources.Get "es.md" -}}
+
+<div class="db" data-db-page="{{ $key }}" data-db-title="{{ .Title }}">
+    {{ partial "dreambudget/nav.html" . }}
+
+    <section class="db-section db-sky db-intro db-legal-hero" id="top">
+        <div class="db-wrap">
+            <div class="db-mark" data-i18n="{{ $key }}.mark">{{ .Params.mark }}</div>
+            <h1 class="db-h1" data-i18n="{{ $key }}.title">{{ .Params.heading | safeHTML }}</h1>
+        </div>
+    </section>
+
+    <section class="db-section db-cream">
+        <div class="db-wrap">
+            <article class="db-legal" data-db-lang-only="en">
+                {{ .Content }}
+            </article>
+            {{- with $es }}
+            <article class="db-legal" data-db-lang-only="es" lang="es" hidden>
+                {{ .Content }}
+            </article>
+            {{- end }}
+        </div>
+    </section>
+
+    {{ partial "dreambudget/footer.html" . }}
+</div>
+
+{{ end }}

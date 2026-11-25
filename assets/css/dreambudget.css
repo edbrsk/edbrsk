@@ -861,3 +861,80 @@ html:has(.db-body) {
     outline: 2px solid var(--ink);
     outline-offset: 2px;
 }
+
+/* ---- Privacy and support pages ---- */
+
+.db-legal-hero {
+    padding-bottom: 3.5rem;
+}
+
+.db-legal {
+    max-width: 46rem;
+    color: var(--ink-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.db-legal h2 {
+    margin: 2.75rem 0 .75rem;
+    font-family: var(--display);
+    font-size: 1.45rem;
+    font-weight: 800;
+    letter-spacing: -.015em;
+    line-height: 1.25;
+    color: var(--ink);
+}
+
+.db-legal p,
+.db-legal li {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}
+
+.db-legal p + p,
+.db-legal p + ol,
+.db-legal ol + p {
+    margin-top: 1rem;
+}
+
+.db-legal p:first-child em {
+    font-family: var(--mono);
+    font-size: .8rem;
+    font-style: normal;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.db-legal ul,
+.db-legal ol {
+    margin: 0;
+    padding-left: 1.25rem;
+    /* Tailwind's reset removes list markers. */
+    list-style: disc;
+}
+
+.db-legal ol {
+    list-style: decimal;
+}
+
+.db-legal li::marker {
+    color: #14477F;
+}
+
+.db-legal li + li {
+    margin-top: .5rem;
+}
+
+.db-legal strong {
+    color: var(--ink);
+}
+
+.db-legal a {
+    color: #14477F;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    /* Keeps hyphenation from splitting the email address as "gmail.-com". */
+    hyphens: manual;
+    -webkit-hyphens: manual;
+}

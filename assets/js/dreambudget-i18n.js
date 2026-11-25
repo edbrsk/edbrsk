@@ -1,12 +1,18 @@
 // Spanish for the Dreambudget pages, applied in the browser so the rest of the
 // site needs no i18n. English stays in the HTML; elements opt in with
-// data-i18n="key" (inner HTML) or data-i18n-attr="attr:key;attr:key".
+// data-i18n="key" (inner HTML) or data-i18n-attr="attr:key;attr:key". Long text, like the
+// privacy and support pages, is in the HTML in both languages, each block marked
+// data-db-lang-only.
 // Loaded at the top of <body>, before the content it translates.
 (function () {
     var ES = {
         'meta.landing.title': 'Dreambudget',
         'meta.landing.description': 'Una app sencilla y rápida para gestionar tus finanzas',
         'meta.how.title': 'Cómo funciona un presupuesto con Dreambudget',
+        'meta.privacy.title': 'Política de privacidad de Dreambudget',
+        'meta.privacy.description': 'Qué recoge Dreambudget, dónde se guarda, quién puede verlo y cómo eliminarlo.',
+        'meta.support.title': 'Ayuda de Dreambudget',
+        'meta.support.description': 'Consigue ayuda con Dreambudget, o pide que se eliminen tu cuenta y tus datos.',
         'meta.how.description': '¿Nunca has hecho un presupuesto? Una guía paso a paso para planificar tu mes con Dreambudget, desde añadir tus cuentas hasta revisar adónde fue tu dinero.',
 
         'common.comingSoon': 'Próximamente',
@@ -24,6 +30,13 @@
 
         'footer.follow': 'Sígueme en <a href="https://www.instagram.com/edbrsk/">Instagram</a>',
         'footer.email': 'Email profesional',
+        'footer.privacy': 'Política de privacidad',
+        'footer.support': 'Ayuda',
+
+        'privacy.mark': 'Privacidad',
+        'privacy.title': 'Tu dinero, <span class="db-grad">tus datos.</span>',
+        'support.mark': 'Ayuda',
+        'support.title': '¿Necesitas ayuda? <span class="db-grad">Escríbeme.</span>',
 
         'landing.hero.title': 'Por fin, una visión clara <span class="db-grad">de tu dinero.</span>',
         'landing.hero.lead': 'Dreambudget es la app sencilla y potente que reúne todas tus cuentas, presupuestos y gastos en un solo lugar. Toma el control de tus finanzas y construye tu futuro con confianza.',
@@ -199,6 +212,10 @@
         // The theme may add the site name around the page title, so only the page's own title is swapped.
         document.title = esTitle && page.dbTitle ? original.title.replace(page.dbTitle, esTitle) : original.title;
         if (description) description.setAttribute('content', esDescription || original.description);
+
+        document.querySelectorAll('[data-db-lang-only]').forEach(function (el) {
+            el.hidden = el.dataset.dbLangOnly !== next;
+        });
 
         document.querySelectorAll('video track').forEach(function (track) {
             track.track.mode = track.srclang === next ? 'showing' : 'disabled';
