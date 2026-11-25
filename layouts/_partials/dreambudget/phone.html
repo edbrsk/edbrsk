@@ -1,0 +1,5 @@
+{{- $img := resources.Get .src -}}
+{{- $web := $img.Resize "660x webp q85" -}}
+<img src="{{ $web.RelPermalink }}" width="{{ $web.Width }}" height="{{ $web.Height }}" alt="{{ .alt }}"{{ with .altKey }} data-i18n-attr="alt:{{ . }}"{{ end }}
+    class="db-phone{{ with .class }} {{ . }}{{ end }}" {{ if .eager }}fetchpriority="high"{{ else }}loading="lazy"{{ end }}
+    decoding="async">

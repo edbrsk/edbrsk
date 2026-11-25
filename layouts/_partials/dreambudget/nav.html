@@ -1,0 +1,28 @@
+{{- $landing := site.GetPage "/dreambudget" -}}
+{{- $howItWorks := site.GetPage "/dreambudget/how-it-works" -}}
+{{- $logo := resources.Get "img/dreambudget.png" -}}
+{{- /* On the landing the section links are in-page anchors; elsewhere they point back to it. */ -}}
+{{- $base := cond (eq . $landing) "" $landing.RelPermalink -}}
+<nav class="db-nav" aria-label="Dreambudget">
+    <div class="db-wrap db-nav__inner">
+        <a class="db-brand" href="{{ cond (eq . $landing) "#top" $landing.RelPermalink }}">
+            <img src="{{ $logo.RelPermalink }}" alt="" width="34" height="34">
+            <span>Dream<b>budget</b></span>
+        </a>
+        <div class="db-nav__links">
+            <a href="{{ $base }}#budgets" data-i18n="nav.budgets">Budgets</a>
+            <a href="{{ $base }}#transactions" data-i18n="nav.transactions">Transactions</a>
+            <a href="{{ $base }}#accounts" data-i18n="nav.accounts">Accounts</a>
+            <a href="{{ $base }}#payees" data-i18n="nav.payees">Payees</a>
+            <a href="{{ $base }}#reports" data-i18n="nav.reports">Reports</a>
+            <a href="{{ $howItWorks.RelPermalink }}"{{ if eq . $howItWorks }} aria-current="page"{{ end }} data-i18n="nav.howItWorks">How it works</a>
+        </div>
+        <div class="db-nav__end">
+            <span class="db-pill" data-i18n="common.comingSoon">Coming soon</span>
+            <div class="db-lang" role="group" aria-label="Language" data-i18n-attr="aria-label:nav.language">
+                <button type="button" data-db-lang="en" lang="en" aria-pressed="true" aria-label="English">EN</button>
+                <button type="button" data-db-lang="es" lang="es" aria-pressed="false" aria-label="Español">ES</button>
+            </div>
+        </div>
+    </div>
+</nav>

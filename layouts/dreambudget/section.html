@@ -1,0 +1,143 @@
+{{ define "main" }}
+{{ $logo := resources.Get "img/dreambudget.png" }}
+<div class="db" data-db-page="landing" data-db-title="{{ .Title }}">
+    {{ partial "dreambudget/nav.html" . }}
+
+    <section class="db-section db-sky db-hero" id="top">
+        <div class="db-wrap db-split">
+            <div class="db-hero__copy">
+                <div class="db-brand db-hero__brand">
+                    <img src="{{ $logo.RelPermalink }}" alt="" width="64" height="64">
+                    <span>Dream<b>budget</b></span>
+                </div>
+                <h1 class="db-h1" data-i18n="landing.hero.title">Finally, a clear view <span class="db-grad">of your money.</span></h1>
+                <p class="db-lead" data-i18n="landing.hero.lead">
+                    Dreambudget is the simple, powerful app that brings all your accounts, budgets, and spending into
+                    one place. Take control of your finances and build your future with confidence.
+                </p>
+                <div class="db-cta">
+                    <span class="db-store" aria-label="Coming soon to the App Store" data-i18n-attr="aria-label:store.appStoreLabel">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="6" y="2.5" width="12" height="19" rx="3" />
+                            <path d="M10.5 18.5h3" />
+                        </svg>
+                        <span><small data-i18n="common.comingSoon">Coming soon</small>App Store</span>
+                    </span>
+                    <span class="db-store db-store--ghost" aria-label="Coming soon to Google Play" data-i18n-attr="aria-label:store.googlePlayLabel">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M6 3.5v17l14-8.5z" />
+                        </svg>
+                        <span><small data-i18n="common.comingSoon">Coming soon</small>Google Play</span>
+                    </span>
+                </div>
+                <div class="db-links">
+                    <a class="db-tour" href="#budgets" data-i18n="landing.hero.tour">See what's inside ↓</a>
+                    <a class="db-tour" href="{{ relref . "how-it-works" }}" data-i18n="landing.hero.howItWorks">New to budgeting? How it works →</a>
+                </div>
+            </div>
+            <div class="db-media">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_budgets_up.png" "altKey" "landing.hero.alt" "class" "db-phone--half" "eager" true "alt" "Dreambudget's budgets screen for September, listing each bill with what's left to spend") }}
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-sage db-continues" id="budgets">
+        <div class="db-wrap db-split">
+            <div class="db-media db-media--end">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_budgets_bottom.png" "class" "db-phone--half" "alt" "") }}
+            </div>
+            <div class="db-copy">
+                <div class="db-mark"><b>01</b><span data-i18n="landing.budgets.mark">Budgets</span></div>
+                <h2 class="db-h2" data-i18n="landing.budgets.title">Master Your Money <span class="db-grad">with Smart Budgets</span></h2>
+                <p class="db-lead" data-i18n="landing.budgets.lead">
+                    Stop wondering where your money went. Create simple, flexible budgets to track your spending,
+                    eliminate overspending, and finally achieve your financial goals.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-cream" id="transactions">
+        <div class="db-wrap db-split db-split--flip">
+            <div class="db-copy">
+                <div class="db-mark"><b>02</b><span data-i18n="landing.transactions.mark">Transactions</span></div>
+                <h2 class="db-h2" data-i18n="landing.transactions.title">Log Transactions <span class="db-grad">in Seconds</span></h2>
+                <p class="db-lead" data-i18n="landing.transactions.lead">
+                    A budget is only as good as the data you feed it. Quickly log every expense to keep your budgets
+                    perfectly in sync and make confident spending decisions.
+                </p>
+            </div>
+            <div class="db-media">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_add_transaction.png" "altKey" "landing.transactions.alt" "alt" "Adding a transaction in Dreambudget") }}
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-leaf" id="accounts">
+        <div class="db-wrap db-split">
+            <div class="db-copy">
+                <div class="db-mark"><b>03</b><span data-i18n="landing.accounts.mark">Accounts</span></div>
+                <h2 class="db-h2" data-i18n="landing.accounts.title">All Your Accounts, <span class="db-grad">One View</span></h2>
+                <p class="db-lead" data-i18n="landing.accounts.lead">
+                    Stop juggling multiple apps. Securely connect your bank accounts to get a complete, real-time
+                    overview of your finances in one single place. Syncing transactions is just a click away.
+                </p>
+            </div>
+            <div class="db-media">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_accounts.png" "altKey" "landing.accounts.alt" "alt" "Checking, savings, credit card and mortgage accounts with their balances") }}
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-lime" id="payees">
+        <div class="db-wrap db-split db-split--flip">
+            <div class="db-copy">
+                <div class="db-mark"><b>04</b><span data-i18n="landing.payees.mark">Payees</span></div>
+                <h2 class="db-h2" data-i18n="landing.payees.title">Track Your <span class="db-grad">Payees</span></h2>
+                <p class="db-lead" data-i18n="landing.payees.lead">
+                    Who gets the biggest slice of your pie? Keep every payee in one list, from your favorite coffee
+                    shop to your monthly subscriptions, and see exactly where your money flows.
+                </p>
+            </div>
+            <div class="db-media">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_payees.png" "altKey" "landing.payees.alt" "alt" "The payees list in Dreambudget") }}
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-butter" id="reports">
+        <div class="db-wrap db-split">
+            <div class="db-copy">
+                <div class="db-mark"><b>05</b><span data-i18n="landing.reports.mark">Reports</span></div>
+                <h2 class="db-h2" data-i18n="landing.reports.title">Insightful Reports, <span class="db-grad">Clear Vision</span></h2>
+                <p class="db-lead" data-i18n="landing.reports.lead">
+                    Transform your financial data into a clear story. Our beautiful charts and reports help you
+                    visualize spending patterns and gain the clarity you need to save more effectively.
+                </p>
+            </div>
+            <div class="db-media">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_reports.png" "altKey" "landing.reports.alt" "alt" "Reports with this month's spending by category and a net worth overview") }}
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-night" id="design">
+        <div class="db-wrap db-split db-split--flip">
+            <div class="db-copy">
+                <div class="db-mark"><b>06</b><span data-i18n="landing.design.mark">Dark mode</span></div>
+                <h2 class="db-h2" data-i18n="landing.design.title">Designed <span class="db-grad">For You</span></h2>
+                <p class="db-lead" data-i18n="landing.design.lead">
+                    Your experience matters. Switch to a beautiful Dark Mode to reduce eye strain, and use dreambudget
+                    in your preferred language.
+                </p>
+            </div>
+            <div class="db-media">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_budgets_dark.png" "altKey" "landing.design.alt" "alt" "The budgets screen in Dark Mode") }}
+            </div>
+        </div>
+    </section>
+
+    {{ partial "dreambudget/footer.html" . }}
+</div>
+
+{{ end }}

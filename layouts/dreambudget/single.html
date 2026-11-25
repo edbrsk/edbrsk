@@ -1,303 +1,231 @@
 {{ define "main" }}
+{{ $landing := site.GetPage "/dreambudget" }}
 
-<style>
-    .dreambudget-container {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-        min-height: 80vh;
-    }
+<div class="db" data-db-page="how" data-db-title="{{ .Title }}">
+    {{ partial "dreambudget/nav.html" . }}
 
-    .dreambudget-hero {
-        background-color: #93C1E4;
-    }
-
-    .dreambudget-budgets {
-        background-color: #AFD0CE;
-    }
-
-    .dreambudget-transactions {
-        background-color: #FCFDF6;
-    }
-
-    .dreambudget-accounts {
-        background-color: #BED6A6;
-    }
-
-    .dreambudget-payees {
-        background-color: #D4E195
-    }
-
-    .dreambudget-reports {
-        background-color: #F4F7DD
-    }
-
-    .dreambudget-dark {
-        background-color: #000000;
-    }
-</style>
-
-<section class="dreambudget-container dreambudget-hero">
-    <!-- Main container -->
-    <div class="flex flex-col lg:flex-row min-h-[80vh]">
-        <!-- Left content section -->
-        <div class="flex-1 flex items-center justify-center p-6 lg:p-8 text-white">
-            <div class="max-w-md w-full">
-                <!-- App Logo -->
-                <div class="mb-8">
-                    {{ $logo := resources.Get "img/dreambudget.png" }}
-                    <img src="{{ $logo.Permalink }}" alt="DreamBudget Logo" class="w-20 h-20 rounded-3xl shadow-lg">
-                </div>
-
-                <!-- Headline -->
-                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-                    Finally, a clear view of your money.
-                </h1>
-
-                <!-- Sub-headline -->
-                <p class="text-lg md:text-xl mb-8">
-                    Dreambudget is the simple, powerful app that brings all your accounts, budgets, and spending into
-                    one place. Take control of your finances and build your future with confidence.
-                </p>
-
-                <!-- Download Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <!-- App Store Button -->
-                    <div class="relative inline-block">
-                        <a href="#" class="inline-block opacity-60 cursor-not-allowed" onclick="return false;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/1280px-Download_on_the_App_Store_Badge.svg.png"
-                                alt="Download on the App Store - Coming Soon" class="h-12 w-auto grayscale">
-                        </a>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-xs font-bold text-white bg-black/70 px-2 py-1 rounded">Soon</span>
-                        </div>
-                    </div>
-
-                    <!-- Google Play Button -->
-                    <div class="relative inline-block">
-                        <a href="#" class="inline-block opacity-60 cursor-not-allowed" onclick="return false;">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/1024px-Google_Play_Store_badge_EN.svg.png"
-                                alt="GET IT ON Google Play - Coming Soon" class="h-12 w-auto grayscale">
-                        </a>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-xs font-bold text-white bg-black/70 px-2 py-1 rounded">Soon</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Right content section (App Screenshot) -->
-        <div class="flex-1 flex items-end justify-center p-6 lg:p-8" style="padding: 2rem 0 0 0">
-            <div class="max-w-md w-full">
-                {{ $image := resources.Get "img/dreambudget_budgets_up.png" }}
-                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot"
-                    class="max-w-sm w-full h-auto rounded-lg">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="dreambudget-container dreambudget-budgets">
-    <!-- Main container -->
-    <div class="flex flex-col lg:flex-row min-h-[80vh]">
-        <!-- Left content section (App Screenshot) -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8" style="padding: 0">
-            <div class="max-w-md w-full">
-                {{ $image := resources.Get "img/dreambudget_budgets_bottom.png" }}
-                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot"
-                    class="max-w-sm w-full h-auto rounded-lg">
-            </div>
-        </div>
-
-        <!-- Rigth content section -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8 text-white">
-            <div class="max-w-md w-full">
-                <!-- Headline -->
-                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-                    Master Your Money with Smart Budgets
-                </h1>
-
-                <!-- Sub-headline -->
-                <p class="text-lg md:text-xl mb-8">
-                    Stop wondering where your money went. Create simple, flexible budgets to track your spending,
-                    eliminate overspending, and finally achieve your financial goals.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="dreambudget-container dreambudget-transactions">
-    <!-- Main container -->
-    <div class="flex flex-col lg:flex-row min-h-[80vh]">
-        <!-- Left content section -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8 ">
-            <div class="max-w-md w-full">
-
-                <!-- Headline -->
-                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-                    Log Transactions in Seconds
-                </h1>
-
-                <!-- Sub-headline -->
-                <p class="text-lg md:text-xl mb-8">
-                    A budget is only as good as the data you feed it. Quickly log every expense to keep your budgets
-                    perfectly in sync and make confident spending decisions.
-                </p>
-            </div>
-        </div>
-
-        <!-- Right content section (App Screenshot) -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
-            <div class="max-w-md w-full">
-                {{ $image := resources.Get "img/dreambudget_add_transaction.png" }}
-                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot"
-                    class="max-w-sm w-full h-auto rounded-lg">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="dreambudget-container dreambudget-accounts">
-    <!-- Main container -->
-    <div class="flex flex-col lg:flex-row min-h-[80vh]">
-        <!-- Left content section (App Screenshot) -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
-            <div class="max-w-md w-full">
-                {{ $image := resources.Get "img/dreambudget_accounts.png" }}
-                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot"
-                    class="max-w-sm w-full h-auto rounded-lg">
-            </div>
-        </div>
-
-        <!-- Rigth content section -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8 text-white">
-            <div class="max-w-md w-full">
-                <!-- Headline -->
-                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-                    All Your Accounts, One View
-                </h1>
-
-                <!-- Sub-headline -->
-                <p class="text-lg md:text-xl mb-8">
-                    Stop juggling multiple apps. Securely connect your bank accounts to get a complete, real-time
-                    overview of your finances in one single place. Syncing transactions is just a click away.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="dreambudget-container dreambudget-payees">
-    <!-- Main container -->
-    <div class="flex flex-col lg:flex-row min-h-[80vh]">
-        <!-- Left content section -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8 text-white">
-            <div class="max-w-md w-full">
-
-                <!-- Headline -->
-                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-                    Track Your Payees
-                </h1>
-
-                <!-- Sub-headline -->
-                <p class="text-lg md:text-xl mb-8">
-                    Who gets the biggest slice of your pie? Manage a list of your payees—from your favorite coffee shop
-                    to your monthly subscriptions—and see exactly where your money flows.
-                </p>
-            </div>
-        </div>
-
-        <!-- Right content section (App Screenshot) -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
-            <div class="max-w-md w-full">
-                {{ $image := resources.Get "img/dreambudget_payees.png" }}
-                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot"
-                    class="max-w-sm w-full h-auto rounded-lg">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="dreambudget-container dreambudget-reports">
-    <!-- Main container -->
-    <div class="flex flex-col lg:flex-row min-h-[80vh]">
-        <!-- Left content section (App Screenshot) -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
-            <div class="max-w-md w-full">
-                {{ $image := resources.Get "img/dreambudget_reports.png" }}
-                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot"
-                    class="max-w-sm w-full h-auto rounded-lg">
-            </div>
-        </div>
-
-        <!-- Rigth content section -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
-            <div class="max-w-md w-full">
-                <!-- Headline -->
-                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-                    Insightful Reports, Clear Vision
-                </h1>
-
-                <!-- Sub-headline -->
-                <p class="text-lg md:text-xl mb-8">
-                    Transform your financial data into a clear story. Our beautiful charts and reports help you
-                    visualize spending patterns and gain the clarity you need to save more effectively.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="dreambudget-container dreambudget-dark">
-    <!-- Main container -->
-    <div class="flex flex-col lg:flex-row min-h-[80vh]">
-        <!-- Left content section -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8 text-white">
-            <div class="max-w-md w-full">
-
-                <!-- Headline -->
-                <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-4">
-                    Designed For You
-                </h1>
-
-                <!-- Sub-headline -->
-                <p class="text-lg md:text-xl mb-8">
-                    Your experience matters. Switch to a beautiful Dark Mode to reduce eye strain, and use dreambudget
-                    in your preferred language.
-                </p>
-            </div>
-        </div>
-
-        <!-- Right content section (App Screenshot) -->
-        <div class="flex-1 flex items-start justify-center p-6 lg:p-8">
-            <div class="max-w-md w-full">
-                {{ $image := resources.Get "img/dreambudget_budgets_dark.png" }}
-                <img src="{{ $image.Permalink }}" alt="DreamBudget App Screenshot"
-                    class="max-w-sm w-full h-auto rounded-lg">
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer class="footer">
-    <div class="footer__content">
-        <div class="footer__logo">
-            <span class="logo">Edgar</span>
-        </div>
-        <div class="footer__contact">
-            <p class="contact__text">
-                Follow me on <a href="https://www.instagram.com/edbrsk/" class="contact__link">Instagram</a>
+    <section class="db-section db-sky db-intro" id="top">
+        <div class="db-wrap">
+            <div class="db-mark" data-i18n="how.intro.mark">How it works</div>
+            <h1 class="db-h1" data-i18n="how.intro.title">Budgeting, <span class="db-grad">one step at a time.</span></h1>
+            <p class="db-lead" data-i18n="how.intro.lead">
+                New to budgeting? Dreambudget is built around one simple idea: decide what your money is for before
+                you spend it. Here's how that works in the app, from your first account to the end of the month.
             </p>
-            <p class="contact__text">
-                Business email
-            </p>
-            <a href="mailto:edbrsk@gmail.com" class="contact__email">
-                edbrsk@gmail.com
-            </a>
+            <ol class="db-steps">
+                <li><a href="#accounts"><b>01</b><span data-i18n="how.accounts.step">Add your accounts</span></a></li>
+                <li><a href="#assign"><b>02</b><span data-i18n="how.assign.step">Give every euro a job</span></a></li>
+                <li><a href="#spend"><b>03</b><span data-i18n="how.spend.step">Log what you spend</span></a></li>
+                <li><a href="#adjust"><b>04</b><span data-i18n="how.adjust.step">Adjust when plans change</span></a></li>
+                <li><a href="#plan"><b>05</b><span data-i18n="how.plan.step">Plan ahead</span></a></li>
+                <li><a href="#review"><b>06</b><span data-i18n="how.review.step">Review the month</span></a></li>
+            </ol>
         </div>
-    </div>
-</footer>
+    </section>
+
+    {{ with .Params.video }}
+    <section class="db-section db-night db-video-section" aria-label="Video: how budgeting works with Dreambudget" data-i18n-attr="aria-label:how.video.label">
+        <div class="db-wrap">
+            <video class="db-video" controls preload="metadata" playsinline
+                {{ with $.Params.videoPoster }}poster="{{ . }}"{{ end }}>
+                <source src="{{ . }}" type="video/mp4">
+                {{ with $.Params.videoCaptions }}
+                <track kind="captions" src="{{ . }}" srclang="en" label="English" default>
+                {{ end }}
+                {{ with $.Params.videoCaptionsEs }}
+                <track kind="captions" src="{{ . }}" srclang="es" label="Español">
+                {{ end }}
+            </video>
+        </div>
+    </section>
+    {{ end }}
+
+    <section class="db-section db-leaf" id="accounts">
+        <div class="db-wrap db-split">
+            <div class="db-copy">
+                <div class="db-mark"><b>01</b><span data-i18n="how.accounts.mark">Start with what you have</span></div>
+                <h2 class="db-h2" data-i18n="how.accounts.title">Add your <span class="db-grad">accounts</span></h2>
+                <p class="db-lead" data-i18n="how.accounts.lead">
+                    Add your checking and savings accounts, credit cards and loans, or connect your bank to bring in
+                    your balances and transactions. Dreambudget groups them by type, so you can see all of your money
+                    in one place before you plan anything.
+                </p>
+            </div>
+            <div class="db-media">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_accounts.png" "altKey" "how.accounts.alt" "alt" "Checking, savings, credit card and mortgage accounts with their balances") }}
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-sage" id="assign">
+        <div class="db-wrap db-split db-split--flip">
+            <div class="db-copy">
+                <div class="db-mark"><b>02</b><span data-i18n="how.assign.mark">The core idea</span></div>
+                <h2 class="db-h2" data-i18n="how.assign.title">Give every euro <span class="db-grad">a job</span></h2>
+                <p class="db-lead" data-i18n="how.assign.lead">
+                    Create a category for each thing you spend on, like rent, groceries or car insurance, and group
+                    them, for example into Bills and Needs. Then assign each category the amount you plan to spend
+                    this month. That amount is the category's budget.
+                </p>
+                <p class="db-lead" data-i18n="how.assign.lead2">
+                    Each category then shows how much is still available to spend, and its bar shrinks as you spend:
+                </p>
+                <ul class="db-legend">
+                    <li><span class="db-dot db-dot--ok" aria-hidden="true"></span><span data-i18n="how.assign.legendOk"><b>Green</b>
+                        more than a fifth of the budget is left</span></li>
+                    <li><span class="db-dot db-dot--low" aria-hidden="true"></span><span data-i18n="how.assign.legendLow"><b>Orange</b>
+                        a fifth or less is left</span></li>
+                    <li><span class="db-dot db-dot--out" aria-hidden="true"></span><span data-i18n="how.assign.legendOut"><b>Red</b>
+                        the budget is used up, or you've spent more than it had</span></li>
+                </ul>
+            </div>
+            <div class="db-media">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_budgets.png" "altKey" "how.assign.alt" "alt" "The budgets screen, with categories grouped into Bills and Needs and the amount available in each") }}
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-cream" id="spend">
+        <div class="db-wrap db-split">
+            <div class="db-copy">
+                <div class="db-mark"><b>03</b><span data-i18n="how.spend.mark">Day to day</span></div>
+                <h2 class="db-h2" data-i18n="how.spend.title">Log what <span class="db-grad">you spend</span></h2>
+                <p class="db-lead" data-i18n="how.spend.lead">
+                    Whenever money goes out or comes in, add a transaction: the amount, who you paid, the category and
+                    the account. The category's available amount updates straight away. If your bank is connected,
+                    sync it to bring in the transactions instead of typing them.
+                </p>
+                <ul class="db-chips" aria-label="Also on every transaction" data-i18n-attr="aria-label:how.spend.chipsLabel">
+                    <li class="db-chip" data-i18n="how.spend.chipFlow">Outflow or inflow</li>
+                    <li class="db-chip" data-i18n="how.spend.chipCleared">Mark as cleared</li>
+                    <li class="db-chip" data-i18n="how.spend.chipRepeat">Repeat monthly</li>
+                    <li class="db-chip" data-i18n="how.spend.chipFlags">Flags and memos</li>
+                </ul>
+            </div>
+            <div class="db-media">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_add_transaction.png" "altKey" "how.spend.alt" "alt" "Adding a transaction: amount, payee, category, account and date") }}
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-lime" id="adjust">
+        <div class="db-wrap db-split db-split--flip">
+            <div class="db-copy">
+                <div class="db-mark"><b>04</b><span data-i18n="how.adjust.mark">When life happens</span></div>
+                <h2 class="db-h2" data-i18n="how.adjust.title">Adjust when <span class="db-grad">plans change</span></h2>
+                <p class="db-lead" data-i18n="how.adjust.lead">
+                    Spent more on groceries than you planned? That's normal, and it doesn't mean the budget failed.
+                    Move money from a category that still has some left to the one that ran short, or change how much
+                    a category has assigned. Your plan stays honest without starting over.
+                </p>
+            </div>
+            <div class="db-media db-media--card">
+                <div class="db-mock" aria-hidden="true">
+                    <div class="db-mock__title" data-i18n="how.adjust.mockTitle">Transfer Between Budgets</div>
+                    <div class="db-mock__row">
+                        <span data-i18n="how.adjust.mockFrom">From<b>Dining out</b></span>
+                        <span class="db-amount db-amount--ok">80,00€</span>
+                    </div>
+                    <div class="db-mock__arrow">
+                        <span class="db-amount">25,00€</span>
+                        <svg viewBox="0 0 24 24"><path d="M12 4v16M6 14l6 6 6-6" /></svg>
+                    </div>
+                    <div class="db-mock__row">
+                        <span data-i18n="how.adjust.mockTo">To<b>Groceries</b></span>
+                        <span class="db-amount db-amount--out">-25,00€</span>
+                    </div>
+                    <div class="db-mock__result" data-i18n="how.adjust.mockResult">Groceries is back to 0,00€, and Dining out keeps 55,00€.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-butter" id="plan">
+        <div class="db-wrap">
+            <div class="db-mark"><b>05</b><span data-i18n="how.plan.mark">Looking further</span></div>
+            <h2 class="db-h2" data-i18n="how.plan.title">Plan <span class="db-grad">ahead</span></h2>
+            <p class="db-lead" data-i18n="how.plan.lead">
+                Some costs don't come every month, and some things take a while to save for. Two tools help with
+                those.
+            </p>
+            <div class="db-cards">
+                <article class="db-card">
+                    <div class="db-card__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" /><circle cx="12" cy="12" r="4.5" /><circle cx="12" cy="12" r=".8" /></svg>
+                    </div>
+                    <h3 class="db-h3" data-i18n="how.plan.targetsTitle">Targets</h3>
+                    <p data-i18n="how.plan.targetsText">
+                        Tell a category what it needs, like "I need 300€ every month", or a total by a certain date.
+                        Set them weekly, monthly, yearly or on a custom schedule, so you know what each category
+                        should get.
+                    </p>
+                </article>
+                <article class="db-card">
+                    <div class="db-card__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M5 11a7 6 0 0 1 13.5-2H20v4h-1.5a7 6 0 0 1-2.5 3V19h-3v-2h-3v2H7v-3a6 6 0 0 1-2-5z" /><path d="M10 7.5h4" /></svg>
+                    </div>
+                    <h3 class="db-h3" data-i18n="how.plan.piggyTitle">Piggy banks</h3>
+                    <p data-i18n="how.plan.piggyText">
+                        Set money aside inside an account for something specific, like a holiday or a new laptop. If
+                        your priorities change, move money from one piggy bank to another.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-cream" id="review">
+        <div class="db-wrap db-split">
+            <div class="db-copy">
+                <div class="db-mark"><b>06</b><span data-i18n="how.review.mark">End of the month</span></div>
+                <h2 class="db-h2" data-i18n="how.review.title">Review <span class="db-grad">the month</span></h2>
+                <p class="db-lead" data-i18n="how.review.lead">
+                    Reports show where this month's money went, category by category, and how your net worth looks
+                    once your debts are taken into account. Use what you learn when you assign next month's budget:
+                    more where you always run short, less where money is left over.
+                </p>
+            </div>
+            <div class="db-media">
+                {{ partial "dreambudget/phone.html" (dict "src" "img/dreambudget_reports.png" "altKey" "how.review.alt" "alt" "Reports with this month's spending by category and a net worth overview") }}
+            </div>
+        </div>
+    </section>
+
+    <section class="db-section db-night db-routine">
+        <div class="db-wrap">
+            <div class="db-mark" data-i18n="how.routine.mark">In short</div>
+            <h2 class="db-h2" data-i18n="how.routine.title">Every month, <span class="db-grad">four moves</span></h2>
+            <ol class="db-cards db-cards--4">
+                <li class="db-card"><b class="db-card__num">1</b>
+                    <h3 class="db-h3" data-i18n="how.routine.assignTitle">Assign</h3>
+                    <p data-i18n="how.routine.assignText">Give each category what you plan to spend.</p>
+                </li>
+                <li class="db-card"><b class="db-card__num">2</b>
+                    <h3 class="db-h3" data-i18n="how.routine.logTitle">Log</h3>
+                    <p data-i18n="how.routine.logText">Add or sync every transaction as it happens.</p>
+                </li>
+                <li class="db-card"><b class="db-card__num">3</b>
+                    <h3 class="db-h3" data-i18n="how.routine.adjustTitle">Adjust</h3>
+                    <p data-i18n="how.routine.adjustText">Move money between categories when plans change.</p>
+                </li>
+                <li class="db-card"><b class="db-card__num">4</b>
+                    <h3 class="db-h3" data-i18n="how.routine.reviewTitle">Review</h3>
+                    <p data-i18n="how.routine.reviewText">Check the reports and plan the next month.</p>
+                </li>
+            </ol>
+            <div class="db-cta">
+                <a class="db-store" href="{{ $landing.RelPermalink }}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="6" y="2.5" width="12" height="19" rx="3" />
+                        <path d="M10.5 18.5h3" />
+                    </svg>
+                    <span><small data-i18n="common.comingSoon">Coming soon</small><span data-i18n="how.routine.cta">See the app</span></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    {{ partial "dreambudget/footer.html" . }}
+</div>
 
 {{ end }}

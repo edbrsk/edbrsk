@@ -1,0 +1,21 @@
+{{- /* Congo's baseof minus the site header, footer and centred body column, so the landing page is full bleed. */ -}}
+{{- partial "functions/warnings.html" .Site -}}
+{{- partial "functions/init.html" . -}}
+<!doctype html>
+<html
+  lang="{{- site.Language.Locale | default "" -}}"
+  dir="{{- site.Language.Direction | default "ltr" -}}"
+  class="scroll-smooth"
+  data-default-appearance="{{- .Site.Params.defaultAppearance | default "light" -}}"
+  data-auto-appearance="{{- .Site.Params.autoSwitchAppearance | default "true" -}}"
+>
+  {{- partial "head.html" . -}}
+  <body class="db-body">
+    {{- $i18n := resources.Get "js/dreambudget-i18n.js" | resources.Minify | resources.Fingerprint "sha512" }}
+    <script src="{{ $i18n.RelPermalink }}" integrity="{{ $i18n.Data.Integrity }}"></script>
+    <a class="db-skip" href="#main-content" data-i18n="common.skip">{{ i18n "nav.skip_to_main" }}</a>
+    <main id="main-content">
+      {{ block "main" . }}{{ end }}
+    </main>
+  </body>
+</html>
